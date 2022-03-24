@@ -12,7 +12,7 @@ function App() {
       <main className="grid grid-rows-6 gap-6">
          <WordRow letters="solar"/>
         <WordRow letters="penny"/>
-        <WordRow letters="piee"/>
+        <WordRow letters="pieee"/>
         <WordRow letters="hello"/>
        
 

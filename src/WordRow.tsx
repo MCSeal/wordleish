@@ -42,9 +42,9 @@ function CharacterCubes ({value, state} : CharacterBoxProps) {
 
 
 const characterStateStyles = {
-    [LetterState.Miss]: 'bg-gray-500',
-    [LetterState.Present]: 'bg-yellow-500',
-    [LetterState.Match]: 'bg-green-500',
+    [LetterState.Miss]: 'bg-gray-500 border-gray-500',
+    [LetterState.Present]: 'bg-yellow-500 border-yellow-500',
+    [LetterState.Match]: 'bg-green-500 border-green-500',
 };
 
 
