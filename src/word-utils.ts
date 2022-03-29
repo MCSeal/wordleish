@@ -6,13 +6,13 @@ export enum LetterState {
   Match, // Letter exists and is in the right location
 }
 
-
+export const LETTER_LENGTH = 5;
 
 const word = getRandomWord();
 console.log(word)
 export function computeGuess(
   guess: string,
-  answerString: string = word
+  answerString: string
 ): LetterState[] {
   const result: LetterState[] = [];
 

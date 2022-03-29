@@ -1,7 +1,7 @@
-import {computeGuess, LetterState} from './word-utils.ts'
+import {computeGuess, LetterState, LETTER_LENGTH } from './word-utils.ts'
+import { useStore } from './store'
 
 
-const LETTER_LENGTH = 5;
 
 
 interface WordRowProps {
@@ -9,11 +9,12 @@ interface WordRowProps {
 }
 
 function WordRow({letters: lettersProp =""}: WordRowProps) {
+    const answer = useStore(state => state.answer);
     const lettersRemaining = LETTER_LENGTH - lettersProp.length;
     //make new array with empty letters if not enought submitted, fixes issue of not adding everything
     const letters = lettersProp.split('').concat(Array(lettersRemaining).fill(''))
    
-   const guessStates = computeGuess(lettersProp);
+   const guessStates = computeGuess(lettersProp, answer);
    
 
     return (    
