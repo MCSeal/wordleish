@@ -3,7 +3,7 @@ import './App.css'
 import WordRow from './WordRow'
 import { useStore, Guess_Length } from './store'
 import { LETTER_LENGTH } from './word-utils'
-
+import Scoreboard from './Scoreboard'
 
 
 
@@ -47,16 +47,20 @@ function App() {
   
   
   return (
-    <div className="mx-auto w-96 relative">
+    
+    <div className="">
+      <div className="border-solid border-2 text-center float-left inset-y-0 left-50 m-10">
+        <Scoreboard/>
+       </div>
+       
+       <div className="mx-auto w-96 relative">
     <header className="border-b border-purple-500 pb-4 my-2"><h1 className="text-4xl text-center">Worldeish</h1>
-    
-    
     <div>
       <input type="text" className="w-2/3 p-1 border-2 ml-auto mr-auto flex text-center" placeholder='Enter Guess Here!'value={guess} onChange={onChange} disabled={isGameOver} />
     </div>
     </header>
       
-      
+    
       
       <main className="grid grid-rows-6 gap-6">
         {rows.map(({guess, result}, index) => (
@@ -76,6 +80,7 @@ function App() {
           }}>New Game? </button> 
         </div>
       )}
+      </div>
     </div>
   )
 }
