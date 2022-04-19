@@ -9,7 +9,7 @@ export enum LetterState {
 export const LETTER_LENGTH = 5;
 
 const word = getRandomWord();
-console.log(word)
+
 export function computeGuess(
   guess: string,
   answerString: string
