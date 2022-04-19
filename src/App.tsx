@@ -31,17 +31,14 @@ function App() {
   rows = rows.concat(Array(numberOfGuessesRemaining).fill(''));
 
   const isGameOver = state.gameState !== 'playing';
-  console.log(state.winStreak);
-  if (state.gameState === 'won') {
-    console.log('COOL');
-    console.log(state.winStreak);
-    // setWinStreak(winStreak + 1);
-  }
-
+  const gameOverMessage = `Don't Forget to submit your high-score!`;
   return (
     <div className="">
       <div className="border-solid border-2 text-center float-left inset-y-0 left-50 m-10">
-        <Scoreboard winStreak={state.winStreak} />
+        <Scoreboard
+          winStreak={state.winStreak}
+          lowestWinGuess={state.lowestWinGuess}
+        />
       </div>
 
       <div className="mx-auto w-96 relative">
@@ -68,9 +65,10 @@ function App() {
         {isGameOver && (
           <div
             role="modal"
-            className="absolute bg-white left-0 right-0 top-1/4 p-6 w-3/4 mx-auto rounded border border-purple-900 text-center"
+            className="absolute bg-white left-0 right-0 top-1/4 p-6 w-3/4 mx-auto rounded border border-purple-900 text-center white-space: pre-line;"
           >
-            Game Over!
+            <h3>Game Over!</h3>
+            {gameOverMessage}
             <button
               className="block border rounded border-grey-600 bg-purple-700 left-0 right-0 p-2 mt-4 mx-auto shadow"
               onClick={() => {

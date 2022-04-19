@@ -22,6 +22,10 @@ const UserSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  lowestWinStreak: {
+    type: Number,
+    required: true,
+  },
 });
 const User = mongoose.model('highscorers', UserSchema);
 User.createIndexes();

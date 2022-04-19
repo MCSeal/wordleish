@@ -13,6 +13,7 @@ interface StoreState {
   answer: string;
   rows: GuessRow[];
   winStreak: number;
+  lowestWinGuess: number;
   gameState: 'playing' | 'won' | 'lost';
   addGuess: (guess: string) => void;
   newGame: () => void;
@@ -24,6 +25,7 @@ export const useStore = create<StoreState>(
       answer: getRandomWord(),
       rows: [],
       winStreak: 0,
+      lowestWinGuess: 6,
       gameState: 'playing',
       addGuess: (guess: string) => {
         const result = computeGuess(guess, get().answer);
@@ -37,6 +39,10 @@ export const useStore = create<StoreState>(
             result,
           },
         ];
+
+        const didWinAndIsLowestWin =
+          didWin && rows.length < get().lowestWinGuess;
+        console.log(didWinAndIsLowestWin);
         set(() => ({
           rows,
           gameState: didWin
@@ -49,6 +55,9 @@ export const useStore = create<StoreState>(
             : rows.length === Guess_Length
             ? 0
             : get().winStreak,
+          lowestWinGuess: didWinAndIsLowestWin
+            ? rows.length
+            : get().lowestWinGuess,
         }));
       },
       newGame: () => {
