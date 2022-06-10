@@ -37,13 +37,23 @@ const cors = require('cors');
 console.log('App listen at port 5000');
 app.use(express.json());
 app.use(cors());
-app.get('/', (req, resp) => {
-  resp.send('App is Working');
-  // You can check backend is working or not by
-  // entering http://loacalhost:5000
 
-  // If you see App is working means
-  // backend working properly
+// app.get('/', (req, resp) => {
+//   resp.send('App is Working');
+//   //get data for scoreboard
+//     User.find().sort({ winStreak: -1 }).limit(10).then((data) => {
+//       console.log(data);
+//       resp.send(data);
+// });
+
+app.get('/', (req, resp) => {
+  //get data for scoreboard
+  User.find()
+    .sort({ winStreak: -1 })
+    .limit(10)
+    .then((data) => {
+      resp.send(data);
+    });
 });
 
 app.post('/', async (req, resp) => {

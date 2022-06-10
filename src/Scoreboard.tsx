@@ -1,7 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import ScoreboardItem from './ScoreboardItem';
 
 function Scoreboard(props) {
   const [name, setName] = useState('');
+  const [scoreboard, setScoreboard] = useState('');
+
   const winStreak = props.winStreak;
   const lowestWinStreak = props.lowestWinGuess;
   const handleOnSubmit = async (e) => {
@@ -20,6 +23,18 @@ function Scoreboard(props) {
       setName('');
     }
   };
+
+  const getScoreboard = async () => {
+    let response = await fetch('http://localhost:5000/');
+    let result = await response.json();
+    console.log(result);
+    setScoreboard(result);
+  };
+
+  //useeffect to get the scoreboad data from the server
+  useEffect(() => {
+    getScoreboard();
+  }, []);
 
   return (
     <div className=" ">
@@ -43,9 +58,8 @@ function Scoreboard(props) {
           Submit
         </button>
       </form>
-      <li>Current. Name - Spree - Lowest Guess: #</li>
-      <li>1. Mathew - Spree: 4 - Lowest Guess: 1</li>
-      <li>2. Nick - Spree: 2 - Lowest Guess: 4</li>
+
+      <ScoreboardItem scoreboard={scoreboard} />
     </div>
   );
 }
