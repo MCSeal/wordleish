@@ -1,10 +1,11 @@
 // To connect with your mongoDB database
 const mongoose = require('mongoose');
 
-const mongoAtlasUri =
+//can hide this if I didn't want it to be public...
+const MONGO_URL =
   'mongodb+srv://Sealyoulater:Okayiguess123@cluster0.lctpx.mongodb.net/Wordelish?retryWrites=true&w=majority';
 mongoose.connect(
-  mongoAtlasUri,
+  MONGO_URL,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -34,7 +35,6 @@ User.createIndexes();
 const express = require('express');
 const app = express();
 const cors = require('cors');
-console.log('App listen at port 5000');
 app.use(express.json());
 app.use(cors());
 
@@ -50,7 +50,7 @@ app.get('/', (req, resp) => {
   //get data for scoreboard
   User.find()
     .sort({ winStreak: -1 })
-    .limit(10)
+    .limit(5)
     .then((data) => {
       resp.send(data);
     });
@@ -72,4 +72,6 @@ app.post('/', async (req, resp) => {
     resp.send('Something Went Wrong');
   }
 });
-app.listen(5000);
+app.listen(process.env.PORT || 5000, () => {
+  console.log('Server is Running');
+});

@@ -3,7 +3,7 @@ import ScoreboardItem from './ScoreboardItem';
 
 function Scoreboard(props) {
   const [name, setName] = useState('');
-  const [scoreboard, setScoreboard] = useState('');
+  const [scoreboard, setScoreboard] = useState(['']);
 
   const winStreak = props.winStreak;
   const lowestWinStreak = props.lowestWinGuess;
@@ -38,13 +38,12 @@ function Scoreboard(props) {
 
   return (
     <div className=" ">
-      <h2 className="text-xl">High Scores</h2>
-      <div>
-        Current Streak: {winStreak}, Lowest Winning Guess: {lowestWinStreak}
-      </div>
-      <form>
+      <h2 className="text-xl mt-3 mb-6">High Scores</h2>
+      <div className="mb-3">Current Streak: {winStreak}</div>
+      <div className="mb-3">Lowest Winning Guess: {lowestWinStreak}</div>
+      <form className="mb-7 border-b border-puple-500">
         <input
-          className="text-center"
+          className="text-center border-black border-2 p-1 m-2"
           type="name"
           placeholder="Enter Name"
           value={name}

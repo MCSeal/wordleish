@@ -33,8 +33,8 @@ function App() {
   const isGameOver = state.gameState !== 'playing';
   const gameOverMessage = `Don't Forget to submit your high-score!`;
   return (
-    <div className="">
-      <div className="border-solid border-2 text-center float-left inset-y-0 left-50 m-10">
+    <div className="flex flex-col-reverse md:flex-none md:flex-row ">
+      <div className=" border-solid border-2 text-center float-left inset-y-0 left-50 right-50 m-10 w-fit">
         <Scoreboard
           winStreak={state.winStreak}
           lowestWinGuess={state.lowestWinGuess}
