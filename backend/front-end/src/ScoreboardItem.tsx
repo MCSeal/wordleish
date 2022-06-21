@@ -1,5 +1,4 @@
 function ScoreboardItem(props) {
-  console.log(props);
   // maps through scoreboard and displays name and high streak
   return (
     <div>
