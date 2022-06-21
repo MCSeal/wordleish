@@ -1,6 +1,6 @@
 // To connect with your mongoDB database
 const mongoose = require('mongoose');
-
+const path = require('path');
 //can hide this if I didn't want it to be public...
 const MONGO_URL =
   'mongodb+srv://Sealyoulater:Okayiguess123@cluster0.lctpx.mongodb.net/Wordelish?retryWrites=true&w=majority';
@@ -54,6 +54,12 @@ app.get('/', (req, resp) => {
     .then((data) => {
       resp.send(data);
     });
+});
+
+app.use(express.static(path.join(__dirname, '/front-end/build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/front-end/build', 'index.html'));
 });
 
 app.post('/', async (req, resp) => {
