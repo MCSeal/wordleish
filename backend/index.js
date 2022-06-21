@@ -46,7 +46,7 @@ app.use(cors());
 //       resp.send(data);
 // });
 
-app.get('/', (req, resp) => {
+app.get('/poops', (req, resp) => {
   //get data for scoreboard
   User.find()
     .sort({ winStreak: -1 })
@@ -56,10 +56,10 @@ app.get('/', (req, resp) => {
     });
 });
 
-app.use(express.static(path.join(__dirname, '/front-end/build')));
+app.use(express.static(path.join(__dirname, '/front-end/dist')));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/front-end/build', 'index.html'));
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/front-end/dist', 'index.html'));
 });
 
 app.post('/', async (req, resp) => {
