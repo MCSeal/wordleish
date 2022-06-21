@@ -9,7 +9,7 @@ function Scoreboard(props) {
   const lowestWinStreak = props.lowestWinGuess;
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    let result = await fetch('http://localhost:5000/', {
+    let result = await fetch('https://wordleish-mern.herokuapp.com/', {
       method: 'post',
       body: JSON.stringify({ name, winStreak, lowestWinStreak }),
       headers: {
@@ -25,7 +25,7 @@ function Scoreboard(props) {
   };
 
   const getScoreboard = async () => {
-    let response = await fetch('http://localhost:5000/');
+    let response = await fetch('https://wordleish-mern.herokuapp.com/');
     let result = await response.json();
     console.log(result);
     setScoreboard(result);
