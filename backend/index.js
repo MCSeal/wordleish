@@ -46,7 +46,7 @@ app.use(cors());
 //       resp.send(data);
 // });
 
-app.get('/poops', (req, resp) => {
+app.get('/', (req, resp) => {
   //get data for scoreboard
   User.find()
     .sort({ winStreak: -1 })
