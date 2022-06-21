@@ -52,7 +52,7 @@ app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '/front-end/dist', 'index.html'));
 });
 
-app.get('/', (req, resp) => {
+app.get('/scoreboard', (req, resp) => {
   //get data for scoreboard
   User.find()
     .sort({ winStreak: -1 })
