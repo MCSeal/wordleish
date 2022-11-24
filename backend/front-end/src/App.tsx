@@ -1,20 +1,31 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import WordRow from './WordRow';
 import { useStore, Guess_Length } from './store';
 import { LETTER_LENGTH } from './word-utils';
 import Scoreboard from './Scoreboard';
+let enterPressed = false;
 
 function App() {
   const state = useStore();
   const [guess, setGuess] = useState('');
-  //on change handler
+
+  const keyDownHandler = (event) => {
+    if (event.key === 'Enter') {
+      console.log('Enter pressed');
+      enterPressed = true;
+      console.log(enterPressed);
+    }
+  };
+  console.log(enterPressed);
+
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newGuess = e.target.value;
 
-    if (newGuess.length === LETTER_LENGTH) {
+    if (newGuess.length === LETTER_LENGTH && enterPressed) {
       state.addGuess(newGuess);
       setGuess('');
+      enterPressed = false;
       return;
     }
 
@@ -51,6 +62,7 @@ function App() {
               placeholder="Enter Guess Here!"
               value={guess}
               onChange={onChange}
+              onKeyDown={keyDownHandler}
               disabled={isGameOver}
             />
           </div>
